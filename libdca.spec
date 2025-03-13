@@ -45,8 +45,6 @@ autoreconf -vif
 find %{buildroot} -name "*.la" -delete
 find %{buildroot} -name "*.a" -delete
 
-%ldconfig_scriptlets
-
 %files
 %doc AUTHORS NEWS README
 %license COPYING
