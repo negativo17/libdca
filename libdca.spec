@@ -35,6 +35,11 @@ Various tools that use %{name}.
 %autosetup -p1
 
 %build
+
+%ifarch %{ix86}
+export  LDFLAGS+="-Wl,-z,notext"
+%endif
+
 autoreconf -vif
 %configure --disable-static
 %make_build
