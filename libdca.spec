@@ -1,7 +1,11 @@
+%ifarch %{ix86}
+%global _pkg_extra_ldflags "-Wl,-z,notext"
+%endif
+
 Summary:    Free library to decode DTS Coherent Acoustics streams
 Name:       libdca
 Version:    0.0.7
-Release:    1%{?dist}
+Release:    2%{?dist}
 License:    GPLv2+
 URL:        https://www.videolan.org/developers/libdca.html
 
@@ -35,11 +39,6 @@ Various tools that use %{name}.
 %autosetup -p1
 
 %build
-
-%ifarch %{ix86}
-export  LDFLAGS+="-Wl,-z,notext"
-%endif
-
 autoreconf -vif
 %configure --disable-static
 %make_build
@@ -75,5 +74,8 @@ find %{buildroot} -name "*.a" -delete
 %{_libdir}/pkgconfig/libdts.pc
 
 %changelog
+* Wed Feb 11 2026 Simone Caronni <negativo17@gmail.com> - 0.0.7-2
+- Fix build on Fedora 44+.
+
 * Thu Jan 14 2021 Simone Caronni <negativo17@gmail.com> - 0.0.7-1
 - First build.
